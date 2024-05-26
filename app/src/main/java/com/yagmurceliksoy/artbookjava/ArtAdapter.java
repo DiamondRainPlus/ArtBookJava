@@ -23,7 +23,7 @@ public class ArtAdapter extends RecyclerView.Adapter<ArtAdapter.ArtHolder> {
     @NonNull
     @Override
     public ArtHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerRowBinding recyclerRowBinding = RecyclerRowBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        RecyclerRowBinding recyclerRowBinding = RecyclerRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ArtHolder(recyclerRowBinding);
 
     }
@@ -34,9 +34,9 @@ public class ArtAdapter extends RecyclerView.Adapter<ArtAdapter.ArtHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(),ArtActivity.class);
-                intent.putExtra("info","old");
-                intent.putExtra("artId",artArrayList.get(position).id);
+                Intent intent = new Intent(holder.itemView.getContext(), ArtActivity.class);
+                intent.putExtra("info", "old");
+                intent.putExtra("artId", artArrayList.get(position).id);
                 holder.itemView.getContext().startActivity(intent);
             }
         });

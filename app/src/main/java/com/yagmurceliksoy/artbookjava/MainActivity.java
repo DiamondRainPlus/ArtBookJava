@@ -3,7 +3,6 @@ package com.yagmurceliksoy.artbookjava;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,9 +19,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
     ArrayList<Art> artArrayList;
     ArtAdapter artAdapter;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Arts",MODE_PRIVATE,null);
+            SQLiteDatabase sqLiteDatabase = this.openOrCreateDatabase("Arts", MODE_PRIVATE, null);
 
             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM arts", null);
             int nameIx = cursor.getColumnIndex("artname");
@@ -54,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 String name = cursor.getString(nameIx);
                 int id = cursor.getInt(idIx);
-                Art art = new Art(name,id);
+                Art art = new Art(name, id);
                 artArrayList.add(art);
             }
             artAdapter.notifyDataSetChanged();
             cursor.close();
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -78,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         if (item.getItemId() == R.id.add_art) {
-            Intent intent = new Intent(this,ArtActivity.class);
-            intent.putExtra("info","new");
+            Intent intent = new Intent(this, ArtActivity.class);
+            intent.putExtra("info", "new");
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
